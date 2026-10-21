@@ -1,0 +1,144 @@
+/* ============ 基礎重置 ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============ 背景 ============ */
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at 50% 40%, #16222a 0%, #0b0f14 100%);
+    font-family: 'Noto Sans TC', 'Segoe UI', sans-serif;
+    color: #ffffff;
+    padding: 20px;
+}
+
+/* ============ 主容器 ============ */
+.clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 40px 50px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 28px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* ============ 圓環容器 ============ */
+.ring-wrapper {
+    position: relative;
+    width: 260px;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============ SVG 圓環 ============ */
+.progress-ring {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.5));
+}
+
+.ring-progress {
+    transition: stroke-dashoffset 0.25s linear;
+}
+
+/* ============ 中央文字 ============ */
+.clock-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+#clock {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-variant-numeric: tabular-nums;
+    color: #e0f7ff;
+    text-shadow:
+        0 0 10px rgba(0, 229, 255, 0.7),
+        0 0 25px rgba(0, 229, 255, 0.35);
+}
+
+.ampm {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: #00e5ff;
+    min-height: 1.2em;   /* 避免佈局跳動 */
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+/* ============ 日期 ============ */
+.date-display {
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+    color: #9fd3ff;
+    opacity: 0.85;
+}
+
+/* ============ 切換按鈕 ============ */
+.toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #00e5ff;
+    background: rgba(0, 229, 255, 0.08);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 1px;
+}
+
+.toggle-btn:hover {
+    background: rgba(0, 229, 255, 0.18);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.35);
+    transform: translateY(-2px);
+}
+
+.toggle-btn:active {
+    transform: translateY(0);
+}
+
+.toggle-icon {
+    font-size: 1.1rem;
+}
+
+/* ============ 淡入 ============ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============ 響應式(手機) ============ */
+@media (max-width: 600px) {
+    .clock-container  { padding: 25px 25px; gap: 20px; }
+    .ring-wrapper     { width: 200px; height: 200px; }
+    #clock            { font-size: 1.7rem; letter-spacing: 1px; }
+    .date-display     { font-size: 0.9rem; }
+    .toggle-btn       { font-size: 0.85rem; padding: 8px 18px; }
+}

@@ -1,11 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>即時時鐘</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Noto+Sans+TC:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   11111 
+    <div class="clock-container">
+
+        <!-- ===== 秒數進度環 (SVG) ===== -->
+        <div class="ring-wrapper">
+            <svg class="progress-ring" viewBox="0 0 220 220">
+                <circle class="ring-bg"
+                        cx="110" cy="110" r="100"
+                        fill="none"
+                        stroke="rgba(255,255,255,0.1)"
+                        stroke-width="10"/>
+                <circle class="ring-progress" id="ringProgress"
+                        cx="110" cy="110" r="100"
+                        fill="none"
+                        stroke="#00e5ff"
+                        stroke-width="10"
+                        stroke-linecap="round"/>
+            </svg>
+
+            <div class="clock-inner">
+                <div id="clock" role="timer" aria-live="off">00:00:00</div>
+                <div class="ampm" id="ampm"></div>
+            </div>
+        </div>
+
+        <!-- ===== 日期顯示 ===== -->
+        <div class="date-display" id="dateDisplay">2025年1月1日 星期三</div>
+
+        <!-- ===== 12/24 制切換按鈕 ===== -->
+        <button class="toggle-btn" id="formatToggle" type="button">
+            <span class="toggle-icon">🕐</span>
+            <span id="toggleLabel">24 小時制</span>
+        </button>
+    </div>
+
+    <!-- 使用 defer 確保 DOM 載入完成後才執行 -->
+    <script src="script.js" defer></script>
 </body>
 </html>
